@@ -9,7 +9,7 @@ const app = express();
 //  Module(s)
 //  =========
 const {authenticateJWT} = require('./modules/middlewareAAE');
-const schemaValidationMiddleware = require('./modules/middlewareSchemaValidation');
+const {schemaValidationMiddleware} = require('./modules/middlewareSchemaValidation');
 
 //  Module(s), Routers
 //  ==================

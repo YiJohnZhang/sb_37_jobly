@@ -31,11 +31,40 @@ class ExpressError extends Error {
 		}
 		
 		console.error(this.stack);
-	
+			// for debugging
+	}
+}
+
+/** Generic 400 Bad Request Error */
+class BadRequestError extends ExpressError{
+	constructor(status, message=undefined){
+		super(400, 'Bad Request');
+	}
+}
+/** Generic 403 Unauthorized Error */
+class UnauthorizedError extends ExpressError{
+	constructor(status, message=undefined){
+		super(403, 'Forbidden');
+	}
+}
+/** Generic 404 Not Found Error */
+class NotFoundError extends ExpressError{
+	constructor(status, message=undefined){
+		super(404, 'Not Found');
+	}
+}
+/** Generic 409 Conflict Error */
+class ConflictError extends ExpressError{
+	constructor(status, message=undefined){
+		super(409, 'Conflict');
 	}
 }
 
 module.exports = {
 	RESPONSE_MESSAGE_MAPPING,
-	ExpressError
+	ExpressError,
+	BadRequestError,
+	UnauthorizedError,
+	NotFoundError,
+	ConflictError
 };
