@@ -12,7 +12,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |06|Need to fix tests.|2022-10-25|23:35 - 23:54|19|
 |07|Clean up initial application.|2022-10-26|00:34 - 00:51|17|
 |08|Part 4 deliverable.|2022-10-26|09:07 - 09:48|41|
-|09||2022-10-26|: - :||
+|09||2022-10-26|10:57 - :||
 |10||2022-10-26|: - :||
 |11||2022-10-2|: - :||
 |12||2022-10-2|: - :||
@@ -23,7 +23,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |17||2022-10-2|: - :||
 ||||**Total Time**| minutes|
 
-297 minutes
+08: 403 minutes
 
 # Part 4: Jobs `FLOAT`sql vs. `NUMERIC`sql
 A SQL `FLOAT`sql/`FLOAT(n)`sql is a [**floating-precision** number data type](https://en.wikipedia.org/wiki/Single-precision_floating-point_format): it stores the number in three portions:
