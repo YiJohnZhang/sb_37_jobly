@@ -37,26 +37,26 @@ class ExpressError extends Error {
 
 /** Generic 400 Bad Request Error */
 class BadRequestError extends ExpressError{
-	constructor(status, message=undefined){
-		super(400, 'Bad Request');
+	constructor(message=undefined){
+		super(400, message ? message : 'Bad Request');
 	}
 }
 /** Generic 403 Unauthorized Error */
 class UnauthorizedError extends ExpressError{
-	constructor(status, message=undefined){
-		super(401, 'Forbidden');
+	constructor(message=undefined){
+		super(401, message ? message : 'Forbidden');
 	}
 }
 /** Generic 404 Not Found Error */
 class NotFoundError extends ExpressError{
-	constructor(status, message=undefined){
-		super(404, 'Not Found');
+	constructor(message=undefined){
+		super(404, message ? message : 'Not Found');
 	}
 }
 /** Generic 409 Conflict Error */
 class ConflictError extends ExpressError{
-	constructor(status, message=undefined){
-		super(409, 'Conflict');
+	constructor(message=undefined){
+		super(409, message ? message : 'Conflict');
 	}
 }
 

@@ -11,7 +11,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |05|Continue setting up the app.|2022-10-25|22:33 - 23:33|60|
 |06|Need to fix tests.|2022-10-25|23:35 - 23:54|19|
 |07|Clean up initial application.|2022-10-26|00:34 - 00:51|17|
-|08||2022-10-26|09:07 - :||
+|08|Part 4 deliverable.|2022-10-26|09:07 - 09:48|41|
 |09||2022-10-26|: - :||
 |10||2022-10-26|: - :||
 |11||2022-10-2|: - :||
@@ -24,6 +24,17 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 ||||**Total Time**| minutes|
 
 297 minutes
+
+# Part 4: Jobs `FLOAT`sql vs. `NUMERIC`sql
+A SQL `FLOAT`sql/`FLOAT(n)`sql is a [**floating-precision** number data type](https://en.wikipedia.org/wiki/Single-precision_floating-point_format): it stores the number in three portions:
+- the number itself as a fraction, **significand**,
+- by representing it as an **exponent** of 10,
+- with an optional bit for the number's **sign**.
+- The precision of the number stored in the data-type is thus limited to the number of bits allocated to the significand.
+
+A SQL `NUMERIC(precision, scale)`sql is a **fixed-precision** number data type: it stores the number directly as it is and scales the number that is fixed upon initialization. The scale represents the placement of the decimal point. As of SQL, *precision* represents the total number of digits; and *scale* represents the implicit placement of the decimal point to attach.
+
+In summary, both floating-precision and fixed-precision both represents the number it stores in scientfiic notation --as a power of 10. However, a floating-precision number can represent more numbers than the number of bits allocated to significand at the cost of precision beyond said number; while a fixed-precision number is only capable of representing the number of bits it has been allocated at the cost of representing far fewer numbers than that of a floating-precision number.
 
 07
 - notes: when testing: remember to use the `runInBand` flag otherwise transactions overlap and messup, yielding unique key errors, use: `jest --runInBand`sh.
