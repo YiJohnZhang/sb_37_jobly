@@ -8,8 +8,8 @@ const {
   commonBeforeAll,
   commonBeforeEach,
   commonAfterEach,
-  commonAfterAll,
-} = require("./_testCommon");
+  commonAfterAll
+} = require('./router._testCommon');
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);

@@ -2,7 +2,7 @@
 
 const request = require("supertest");
 
-const db = require("../db");
+const db = require('../database/db');
 const app = require("../app");
 
 const {
@@ -10,8 +10,8 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  u1Token,
-} = require("./_testCommon");
+  u1Token
+} = require('./router._testCommon');
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);

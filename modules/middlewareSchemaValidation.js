@@ -5,8 +5,8 @@ const jsonschema = require('jsonschema');
 
 const {ExpressError} = require('./utilities');
 
-/**	validateSchemaObject(requestBodyObject, selectedSchema)
- *	
+/**	validateSchemaObject(selectedSchema)
+ *	General schema object validator.
  */
 const validateSchemaObject = (selectedSchema) => {
 

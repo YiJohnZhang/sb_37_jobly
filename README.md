@@ -8,9 +8,29 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |02|Setup app.|2022-10-22|17:45 - 18:14|29|
 |03|Continue setting up the app.|2022-10-22|19:58 - 22:23|145|
 |04|Continue setting up the app.|2022-10-25|21:52 - 22:32|40|
-|05|Continue setting up the app.|2022-10-25|23:33 - :||
+|05|Continue setting up the app.|2022-10-25|22:33 - 23:33|60|
+|06|Need to fix tests.|2022-10-2|: - :||
+|06||2022-10-2|: - :||
+|06||2022-10-2|: - :||
 |06||2022-10-2|: - :||
 ||||**Total Time**| minutes|
+
+
+05
+
+to do:
+- need to get tests working. getting `error: duplicate key value violates unique constraint "users_pkey"` => `await db.query("DELETE FROM ...")`js isn't behaving as expected
+
+
+done:
+- changed `auth.js` for handling authentication middleware to `middlewareAAE.js`
+- modified file names of model tests with a `model.` prefix.
+- modified file names of route tests with a `router.` prefix.
+- modified the `helper/` module tests name with a `helper.` prefix
+- relocated all tests to `__tests__/`
+
+to do:
+- modify `config.test.js`
 
 
 04

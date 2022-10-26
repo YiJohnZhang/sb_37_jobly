@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
-const db = require("../database/db");
-const { BCRYPT_WORK_FACTOR } = require("../config");
+const db = require('../database/db');
+const { BCRYPT_WORK_FACTOR } = require('../config');
 
 async function commonBeforeAll() {
   // noinspection SqlWithoutWhere
@@ -42,6 +42,9 @@ async function commonAfterAll() {
   await db.end();
 }
 
+// test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
+// 	expect(1).toEqual(1);
+// });
 
 module.exports = {
   commonBeforeAll,

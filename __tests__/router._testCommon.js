@@ -1,6 +1,6 @@
 "use strict";
 
-const db = require("../db.js");
+const db = require('../database/db');
 const User = require("../models/user");
 const Company = require("../models/company");
 const { createToken } = require("../helpers/tokens");
@@ -77,6 +77,9 @@ async function commonAfterAll() {
 
 const u1Token = createToken({ username: "u1", isAdmin: false });
 
+// test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
+// 	expect(1).toEqual(1);
+// });
 
 module.exports = {
   commonBeforeAll,

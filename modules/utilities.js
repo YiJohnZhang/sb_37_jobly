@@ -30,7 +30,7 @@ class ExpressError extends Error {
 			this.message = message;
 		}
 		
-		console.error(this.stack);
+		// console.error(this.stack);
 			// for debugging
 	}
 }

@@ -8,14 +8,14 @@ const app = express();
 
 //  Module(s)
 //  =========
-const {authenticateJWT} = require('./modules/auth');
+const {authenticateJWT} = require('./modules/middlewareAAE');
 
 //  Module(s), Routers
 //  ==================
 const authenticationRoutes = require('./modules/routerAuthentication');
 const companiesRoutes = require('./modules/routerCompanies');
 const usersRoutes = require('./modules/routerUsers');
-const technologiesRoutes = require('./routerTechnologies')
+// const technologiesRoutes = require('./routerTechnologies')
 
 //  Environment Variable(s) & Constant(s)
 //  =====================================
@@ -33,7 +33,7 @@ app.use(authenticateJWT);
 app.use("/auth", authenticationRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/users", usersRoutes);
-app.use("/technologies", technologiesRoutes);
+// app.use("/technologies", technologiesRoutes);
 
 // ...
 
