@@ -10,7 +10,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |04|Continue setting up the app.|2022-10-25|21:52 - 22:32|40|
 |05|Continue setting up the app.|2022-10-25|22:33 - 23:33|60|
 |06|Need to fix tests.|2022-10-25|23:35 - 23:54|19|
-|06||2022-10-2|: - :||
+|06|Clean up initial application.|2022-10-26|00:34 - :||
 |06||2022-10-2|: - :||
 |06||2022-10-2|: - :||
 ||||**Total Time**| minutes|
