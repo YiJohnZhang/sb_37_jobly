@@ -1,4 +1,4 @@
-const { BadRequestError } = require("../expressError");
+const { BadRequestError } = require('../modules/utilities');
 
 // THIS NEEDS SOME GREAT DOCUMENTATION.
 
