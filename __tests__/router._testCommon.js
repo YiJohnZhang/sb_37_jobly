@@ -63,10 +63,12 @@ async function commonBeforeAll() {
 }
 
 async function commonBeforeEach() {
+	console.log('being transaction.');
   await db.query("BEGIN");
 }
 
 async function commonAfterEach() {
+	console.log('rolling back');
   await db.query("ROLLBACK");
 }
 
