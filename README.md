@@ -9,15 +9,15 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |03|Continue setting up the app.|2022-10-22|19:58 - 22:23|145|
 |04|Continue setting up the app.|2022-10-25|21:52 - 22:32|40|
 |05|Continue setting up the app.|2022-10-25|22:33 - 23:33|60|
-|06|Need to fix tests.|2022-10-2|: - :||
+|06|Need to fix tests.|2022-10-25|23:35 - :||
 |06||2022-10-2|: - :||
 |06||2022-10-2|: - :||
 |06||2022-10-2|: - :||
 ||||**Total Time**| minutes|
 
+297 minutes
 
 05
-
 to do:
 - need to get tests working. getting `error: duplicate key value violates unique constraint "users_pkey"` => `await db.query("DELETE FROM ...")`js isn't behaving as expected
 
