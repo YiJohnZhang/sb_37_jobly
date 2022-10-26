@@ -44,7 +44,7 @@ class BadRequestError extends ExpressError{
 /** Generic 403 Unauthorized Error */
 class UnauthorizedError extends ExpressError{
 	constructor(status, message=undefined){
-		super(403, 'Forbidden');
+		super(401, 'Forbidden');
 	}
 }
 /** Generic 404 Not Found Error */

@@ -10,135 +10,33 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |04|Continue setting up the app.|2022-10-25|21:52 - 22:32|40|
 |05|Continue setting up the app.|2022-10-25|22:33 - 23:33|60|
 |06|Need to fix tests.|2022-10-25|23:35 - 23:54|19|
-|06|Clean up initial application.|2022-10-26|00:34 - :||
-|06||2022-10-2|: - :||
-|06||2022-10-2|: - :||
+|07|Clean up initial application.|2022-10-26|00:34 - 00:51|17|
+|08||2022-10-2|: - :||
+|09||2022-10-2|: - :||
+|10||2022-10-2|: - :||
+|11||2022-10-2|: - :||
+|12||2022-10-2|: - :||
+|13||2022-10-2|: - :||
+|14||2022-10-2|: - :||
+|15||2022-10-2|: - :||
+|16||2022-10-2|: - :||
+|17||2022-10-2|: - :||
 ||||**Total Time**| minutes|
 
 297 minutes
 
+07
+- notes: when testing: remember to use the `runInBand` flag otherwise transactions overlap and messup, yielding unique key errors, use: `jest --runInBand`sh.
+- I initially got the tests to work because injecting an extra `console.log()`js probably so happened to be a large enough change that one parallel test was slowed down so that database unique key errors won't happen before the cache sped tests up again. Retrospect: You could have saved ~1 hour if you read `Part One: Setup / Starter Code`. 
+- todo:
+	- 
+
+06
+cleaned up.
+
 05
-notes:
-  ● POST /users › unauth for anon
+notes: fixed bugs
 
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      82 |           isAdmin: true,
-      83 |         });
-    > 84 |     expect(resp.statusCode).toEqual(401);
-         |                             ^
-      85 |   });
-      86 |
-      87 |   test("bad request if missing data", async function () {
-
-      at Object.toEqual (__tests__/router.Users.test.js:84:29)
-
-  ● GET /users › unauth for anon
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      148 |     const resp = await request(app)
-      149 |         .get("/users");
-    > 150 |     expect(resp.statusCode).toEqual(401);
-          |                             ^
-      151 |   });
-      152 |
-      153 |   test("fails: test next() handler", async function () {
-
-      at Object.toEqual (__tests__/router.Users.test.js:150:29)
-
-  ● GET /users/:username › unauth for anon
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      184 |     const resp = await request(app)
-      185 |         .get(`/users/u1`);
-    > 186 |     expect(resp.statusCode).toEqual(401);
-          |                             ^
-      187 |   });
-      188 |
-      189 |   test("not found if user not found", async function () {
-
-      at Object.toEqual (__tests__/router.Users.test.js:186:29)
-
-  ● PATCH /users/:username › unauth for anon
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      222 |           firstName: "New",
-      223 |         });
-    > 224 |     expect(resp.statusCode).toEqual(401);
-          |                             ^
-      225 |   });
-      226 |
-      227 |   test("not found if no such user", async function () {
-
-      at Object.toEqual (__tests__/router.Users.test.js:224:29)
-
-  ● DELETE /users/:username › unauth for anon
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      279 |     const resp = await request(app)
-      280 |         .delete(`/users/u1`);
-    > 281 |     expect(resp.statusCode).toEqual(401);
-          |                             ^
-      282 |   });
-      283 |
-      284 |   test("not found if user missing", async function () {
-
-      at Object.toEqual (__tests__/router.Users.test.js:281:29)
-
-● POST /auth/token › unauth with non-existent user
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      39 |           password: "password1",
-      40 |         });
-    > 41 |     expect(resp.statusCode).toEqual(401);
-         |                             ^
-      42 |   });
-      43 |
-      44 |   test("unauth with wrong password", async function () {
-
-      at Object.toEqual (__tests__/router.Authentication.test.js:41:29)
-
-  ● POST /auth/token › unauth with wrong password
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 401
-    Received: 403
-
-      49 |           password: "nope",
-      50 |         });
-    > 51 |     expect(resp.statusCode).toEqual(401);
-         |                             ^
-      52 |   });
-      53 |
-      54 |   test("bad request with missing data", async function () {
-
-      at Object.toEqual (__tests__/router.Authentication.test.js:51:29)
-
-- other 2 fails: throw in a dummy test for `model._testCommons.js` and `router._testCommons.js`.
 
 to do:
 - need to get tests working. getting `error: duplicate key value violates unique constraint "users_pkey"` => `await db.query("DELETE FROM ...")`js isn't behaving as expected

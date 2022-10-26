@@ -63,13 +63,11 @@ async function commonBeforeAll() {
 }
 
 async function commonBeforeEach() {
-	console.log('being transaction.');
-  await db.query("BEGIN");
+	await db.query('BEGIN');
 }
 
 async function commonAfterEach() {
-	console.log('rolling back');
-  await db.query("ROLLBACK");
+  await db.query('ROLLBACK');
 }
 
 async function commonAfterAll() {
@@ -79,9 +77,9 @@ async function commonAfterAll() {
 
 const u1Token = createToken({ username: "u1", isAdmin: false });
 
-// test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
-// 	expect(1).toEqual(1);
-// });
+test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
+	expect(1).toEqual(1);
+});
 
 module.exports = {
   commonBeforeAll,

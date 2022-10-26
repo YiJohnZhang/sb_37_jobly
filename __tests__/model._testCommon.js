@@ -31,20 +31,20 @@ async function commonBeforeAll() {
 }
 
 async function commonBeforeEach() {
-  await db.query("BEGIN");
+	await db.query('BEGIN');
 }
 
 async function commonAfterEach() {
-  await db.query("ROLLBACK");
+  await db.query('ROLLBACK');
 }
 
 async function commonAfterAll() {
   await db.end();
 }
 
-// test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
-// 	expect(1).toEqual(1);
-// });
+test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
+	expect(1).toEqual(1);
+});
 
 module.exports = {
   commonBeforeAll,
