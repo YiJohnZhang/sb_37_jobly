@@ -24,6 +24,7 @@ function authenticateJWT(req, res, next) {
 		if (authHeader) {
 			const token = authHeader.replace(/^[Bb]earer /, "").trim();
 			res.locals.user = jwt.verify(token, JWT_SECRET_KEY);
+				// The provided Springboard code base stores the token on `res.locals...` because the `/auth` route is used to generate the token from the previous request. This way, I guess it doesn't persist locally? but is secure from being copied.
 		}
 		return next();
 	} catch (err) {
@@ -45,8 +46,7 @@ function ensureLoggedIn(req, res, next) {
 	}
 }
 
-
 module.exports = {
 	authenticateJWT,
-	ensureLoggedIn,
+	ensureLoggedIn
 };
