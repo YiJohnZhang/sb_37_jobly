@@ -2,7 +2,13 @@
 
 const db = require('../database/db');
 const { BadRequestError, NotFoundError } = require("../modules/utilities");
-const { sqlForPartialUpdate } = require("../helpers/sql");
+const { sqlForPartialUpdate, sqlFilterQueryBuilder } = require("../helpers/sql");
+
+const companyJSSQLMapping = {
+	name: 'name ILIKE',
+	minEmployees: 'num_employees >=',
+	maxEmployees: 'num_employees <='
+}
 
 /** Related functions for companies. */
 
@@ -45,20 +51,41 @@ class Company {
   }
 
   /** Find all companies.
-   *
+   * Optional filtering is possible.
    * Returns [{ handle, name, description, numEmployees, logoUrl }, ...]
    * */
 
-  static async findAll() {
-    const companiesRes = await db.query(
-          `SELECT handle,
-                  name,
-                  description,
-                  num_employees AS "numEmployees",
-                  logo_url AS "logoUrl"
-           FROM companies
-           ORDER BY name`);
-    return companiesRes.rows;
+  static async findAll(queryString) {
+
+	const sqlQueryBeforeWHERE = (
+		`SELECT handle,
+			name,
+			description,
+			num_employees AS "numEmployees",
+			logo_url AS "logoUrl"
+		FROM companies`);
+		
+	const sqlQueryAfterWHERE = (`ORDER BY name`);
+	let result;
+
+	if(queryString){
+
+		if(queryString.minEmployees && queryString.maxEmployees && queryString.minEmployees > queryString.maxEmployees)
+			throw new BadRequestError('The lower bound of number of employees cannot be greater than that of the upper bound.');
+		
+		if(queryString.name)
+			queryString.name = `%${queryString.name}%`;
+			// vulnerabilites?
+
+		const {parameterizedQuery, queryParameters} = sqlFilterQueryBuilder(queryString, companyJSSQLMapping);
+
+		result = await db.query(`${sqlQueryBeforeWHERE} ${parameterizedQuery} ${sqlQueryAfterWHERE}`, queryParameters);
+
+	}else{
+		result = await db.query(`${sqlQueryBeforeWHERE} ${sqlQueryAfterWHERE}`);
+	}
+		
+    return result.rows;
   }
 
   /** Given a company handle, return data about company.

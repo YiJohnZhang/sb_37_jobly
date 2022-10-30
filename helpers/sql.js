@@ -28,12 +28,9 @@ function sqlFilterQueryBuilder(filterData, jsSQLMapping) {
 
 	if (!keys.length)
 		return;
-	
-	if(filterData.minEmployees && filterData.maxEmployees && filterData.minEmployees > filterData.maxEmployees)
-		throw new BadRequestError('The lower bound of number of employees cannot be greater than that of the upper bound.');
-
+		
 	const queryArray = keys.map((key, index) => `${jsSQLMapping[key]} $${index+1}`);
-	
+
 	return {
 		parameterizedQuery: `WHERE ${queryArray.join(' AND ')}`,
 		queryParameters: Object.values(filterData)

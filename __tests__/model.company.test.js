@@ -85,6 +85,67 @@ describe("findAll", function () {
       },
     ]);
   });
+	
+	let name = 'c';
+	test('w/ filter: all companies with \'c\' in their name', async() => {
+
+		const testQueryString = {
+			name
+		}
+	
+		const result = await Company.findAll(testQueryString);
+		expect(result.length).toBe(3);
+
+	});
+
+	let minEmployees = 2;
+	let testQueryString = {
+		name,
+		minEmployees
+	}
+	test(`w/ filter: all companies with \'c\' in their name and at least ${minEmployees} employee(s)`, async() => {
+
+		const result = await Company.findAll(testQueryString);
+		expect(result.length).toBe(2);
+
+	});
+
+	let maxEmployees = 3;
+	testQueryString = {
+		name,
+		minEmployees,
+		maxEmployees
+	}
+	test(`w/ filter: all companies with \'c\' in their name and bounded [${minEmployees}, ${maxEmployees}] employee(s)`, async() => {
+		
+		const result = await Company.findAll(testQueryString);
+		expect(result.length).toBe(2);
+		
+	});
+
+	maxEmployees = 2;
+	minEmployees = 3;
+	test('Bad Request: the lower bound is greater than that of the upper bound', async() => {
+		
+		const testQueryString = {
+			name,
+			minEmployees,
+			maxEmployees
+		}
+
+		try{
+
+			const result = await Company.findAll(testQueryString);
+
+		}catch(error){
+
+			expect(error.status).toBe(400);
+			expect(error.message).toBe('The lower bound of number of employees cannot be greater than that of the upper bound.')
+
+		}		
+
+	});
+
 });
 
 /************************************** get */

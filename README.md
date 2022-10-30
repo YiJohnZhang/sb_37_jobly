@@ -13,7 +13,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |07|Clean up initial application.|2022-10-26|00:34 - 00:51|17|
 |08|Part 4 deliverable.|2022-10-26|09:07 - 09:48|41|
 |09||2022-10-26|10:57 - 12:49|112|
-|10||2022-10-30|10:48 - :||
+|10||2022-10-30|10:48 - 12:10|82|
 |11||2022-10-2|: - :||
 |12||2022-10-2|: - :||
 |13||2022-10-2|: - :||
@@ -25,8 +25,11 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 
 09: 515 minutes
 
+11
+
 10
-try actually practicing tdd
+- try actually practicing tdd
+- work on part 4 next session
 
 09
 - **02**: need to add .filter method (finished tdd and implementation of helper, `sqlFilterQueryBuilder()` in `helpers/sql`)
