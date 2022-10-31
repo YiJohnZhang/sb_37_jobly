@@ -5,6 +5,7 @@
 const jsonschema = require("jsonschema");
 const express = require("express");
 
+const { sqlFilterQueryBuilder } =require("../helpers/sql"); 
 const { BadRequestError } = require('./utilities');
 const { ensureLoggedIn } = require('./middlewareAAE');
 const Company = require("../models/company");
@@ -25,6 +26,8 @@ const router = new express.Router();
  */
 
 router.post("/", ensureLoggedIn, async function (req, res, next) {
+	// TODO HERE: add filtering and display jobs w/ authorization stuff
+
   try {
     const validator = jsonschema.validate(req.body, companyNewSchema);
     if (!validator.valid) {
@@ -52,7 +55,7 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
 
-	const 
+	// TODO HERE: add filtering and display jobs
 
 	try {
 		const companies = await Company.findAll();

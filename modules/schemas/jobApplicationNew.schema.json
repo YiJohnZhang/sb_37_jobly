@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+	  "username": {
+		"type": "string",
+		"maxLength":25
+	  },
+	  "jobId": {
+		"type": "integer"
+	  },
+	  "applicationState": {
+		"type": "string",
+		"enum": ["interested", "applied", "accepted", "rejected"]
+	  }
+	},
+	"required": [
+	  "username",
+	  "jobId",
+	  "applicationState"
+	]
+  }

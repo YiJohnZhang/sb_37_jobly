@@ -1,4 +1,3 @@
-
 const db = require('../database/db');
 const { BadRequestError, NotFoundError } = require("../modules/utilities");
 const { sqlForPartialUpdate, sqlFilterQueryBuilder } = require("../helpers/sql");

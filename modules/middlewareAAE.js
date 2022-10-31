@@ -11,7 +11,7 @@ const { UnauthorizedError } = require('./utilities');
 
 
 /** Middleware: Authenticate user.
- *
+ *await JobApplication.create
  * If a token was provided, verify it, and, if valid, store the token payload
  * on res.locals (this will include the username and isAdmin field.)
  *
@@ -22,10 +22,10 @@ function authenticateJWT(req, res, next) {
 	try {
 		const authHeader = req.headers && req.headers.authorization;
 		if (authHeader) {
-			console.log(authHeader);
+			// console.log(authHeader);
 			const token = authHeader.replace(/^[Bb]earer /, "").trim();
-			console.log(token);
-			console.log(jwt.verify(token, JWT_SECRET_KEY));
+			// console.log(token);
+			// console.log(jwt.verify(token, JWT_SECRET_KEY));
 			res.locals.user = jwt.verify(token, JWT_SECRET_KEY);
 				// The provided Springboard code base stores the token on `res.locals...` because the `/auth` route is used to generate the token from the previous request. This way, I guess it doesn't persist locally? but is secure from being copied.
 		}

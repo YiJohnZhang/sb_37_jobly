@@ -63,12 +63,28 @@ async function commonBeforeAll() {
     isAdmin: false,
   });
 
+  await User.register({
+    username: "admin",
+    firstName: "Admin",
+    lastName: "Edmund",
+    email: "admin@user.com",
+    password: "password",
+    isAdmin: true,
+  });
+
 	await db.query(`
 		INSERT INTO jobs(title, salary, equity, company_handle)
 		VALUES	('Front-End Engineer', 90000, 0.00005, 'c1'),
 				('Front-End Engineer', 175000, 0, 'c2'),
 				('Front-End Engineer', 125000, 0.0001, 'c3'),
 				('Back-End Engineer', 130000, 0.0003, 'c3')`);
+	
+	await db.query(`
+		INSERT INTO applications(username, job_id, application_state)
+		VALUES	('u1', 1, 'applied'),
+				('u1', 2, 'interested'),
+				('u2', 2, 'applied'),
+				('u1', 3, 'applied')`);
 
 }
 
@@ -86,6 +102,8 @@ async function commonAfterAll() {
 
 
 const u1Token = createToken({ username: "u1", isAdmin: false });
+const u2Token = createToken({ username: "u2", isAdmin: true });
+const adminUserToken = createToken({ username: "admin", isAdmin: true });
 
 test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {
 	expect(1).toEqual(1);
@@ -96,5 +114,6 @@ module.exports = {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  u1Token,
+  u1Token, u2Token,
+  adminUserToken
 };

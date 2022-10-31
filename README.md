@@ -17,7 +17,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |11|**Part 4** TDD|2022-10-30|15:56 - 17:18|82|
 |12|Finished `Jobs` model.|2022-10-30|18:38 - 20:28|110|
 |13||2022-10-30|22:11 - 23:07|56|
-|14||2022-10-31|14:25 - :||
+|14||2022-10-31|14:25 - 16:||
 |15||2022-10-31|: - :||
 ||||**Total Time**| minutes|
 
@@ -26,12 +26,13 @@ darn, could have been 274 minutes (4 hours 34 minutes less if I just took the va
 
 need to complete:
 - `models.jobApplication.test`
-- `router.JobApplication.test`
+- `router.JobApplication.test`	
 - `router.Jobs.test`
 - `router.Jobs`
-- `models.jobApplication` (handle post only)
+- `models.jobApplication` (handle post only and search by usernmae)
 - `router.JobApplication` (post)
-- authorization refactoring
+- modify route outputs
+- authorization refactoring (create a admin+userOrigin middleware and modify tests)
 - estimate: 3 - 5 hours w/ tests
 
 # Specifications:
@@ -43,7 +44,7 @@ need to complete:
 		- `technologies` relation.
 		- `technologies_users` relation, `technologies` and `users` `JOIN`sql table.
 		- `technologies_jobs` relation, `technologies` and `jobs` `JOIN`sql table.
-		- 
+- Interesting that this application doesn't have a `login` route other than indirectly through `/auth/token`. At least the specification sheet doesn't say to create one.
 
 # Part 4: Jobs `FLOAT`sql vs. `NUMERIC`sql
 The `pg` library returns a string from a `NUMERIC`sql type. I hypothesize this is so because JavaScript `Number`js only has a floating-precision number type. Therefore to keep it exact, it is a `String`js.

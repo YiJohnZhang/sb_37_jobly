@@ -35,13 +35,14 @@ CREATE TABLE jobs (
 );
 
 CREATE TYPE job_application_state AS ENUM ('interested', 'applied', 'accepted', 'rejected');
+	-- default is 'interested' for the `job_application_state` enum.
 
 CREATE TABLE applications (
 	username VARCHAR(25)
 		REFERENCES users ON DELETE CASCADE,
 	job_id INTEGER
 		REFERENCES jobs ON DELETE CASCADE,
-	application_state job_application_state,
+	application_state job_application_state NOT NULL,
 	PRIMARY KEY (username, job_id)
 );
 

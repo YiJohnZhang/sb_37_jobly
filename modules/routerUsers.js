@@ -9,6 +9,7 @@ const { ensureLoggedIn } = require('./middlewareAAE');
 const { BadRequestError } = require('./utilities');
 const User = require("../models/user");
 const { createToken } = require("../helpers/tokens");
+const randomPasswordGenerator = require('../helpers/randomPasswordGenerator');
 const userNewSchema = require('./schemas/userNew.schema.json');
 const userUpdateSchema = require('./schemas/userUpdate.schema.json');
 

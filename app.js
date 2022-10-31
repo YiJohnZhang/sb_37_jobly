@@ -15,6 +15,7 @@ const {authenticateJWT} = require('./modules/middlewareAAE');
 const authenticationRoutes = require('./modules/routerAuthentication');
 const companiesRoutes = require('./modules/routerCompanies');
 const usersRoutes = require('./modules/routerUsers');
+const jobApplicationsRoutes = require('./modules/routerJobApplications');
 // const technologiesRoutes = require('./routerTechnologies')
 
 //  Environment Variable(s) & Constant(s)
@@ -33,6 +34,7 @@ app.use(authenticateJWT);
 app.use("/auth", authenticationRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/users", usersRoutes);
+app.use("/", jobApplicationsRoutes);
 // app.use("/technologies", technologiesRoutes);
 
 // ...
