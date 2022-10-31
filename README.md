@@ -16,7 +16,7 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |10||2022-10-30|10:48 - 12:10|82|
 |11|**Part 4** TDD|2022-10-30|15:56 - 17:18|82|
 |12|Finished `Jobs` model.|2022-10-30|18:38 - 20:28|110|
-|13||2022-10-30|22:11 - :||
+|13||2022-10-30|22:11 - 23:07|56|
 |1||2022-10-3|: - :||
 |1||2022-10-3|: - :||
 ||||**Total Time**| minutes|
@@ -24,19 +24,30 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 12: 789 minutes
 darn, could have been 274 minutes (4 hours 34 minutes less if I just took the vanilla codebase)
 
+need to complete:
+- `models.jobApplication.test`
+- `router.JobApplication.test`
+- `router.Jobs.test`
+- `router.Jobs`
+- `models.jobApplication` (handle post only)
+- `router.JobApplication` (post)
+- authorization refactoring
+- estimate: 3 - 5 hours w/ tests
 
-11
-
-10
-- try actually practicing tdd
-- work on part 4 next session
-
-09
-- **02**: need to add .filter method (finished tdd and implementation of helper, `sqlFilterQueryBuilder()` in `helpers/sql`)
-- ****
-
+# Specifications:
+- Base Assignment Requirements
+- All `Further Study` Specifications
+	- Random Password Generation with Admin create route (`/users/new`)
+	- Using a `ENUM`sql type for `application_state`.
+	- Added the following relations:
+		- `technologies` relation.
+		- `technologies_users` relation, `technologies` and `users` `JOIN`sql table.
+		- `technologies_jobs` relation, `technologies` and `jobs` `JOIN`sql table.
+		- 
 
 # Part 4: Jobs `FLOAT`sql vs. `NUMERIC`sql
+The `pg` library returns a string from a `NUMERIC`sql type. I hypothesize this is so because JavaScript `Number`js only has a floating-precision number type. Therefore to keep it exact, it is a `String`js.
+
 A SQL `FLOAT`sql/`FLOAT(n)`sql is a [**floating-precision** number data type](https://en.wikipedia.org/wiki/Single-precision_floating-point_format): it stores the number in three portions:
 - the number itself as a fraction, **significand**,
 - by representing it as an **exponent** of 10,
@@ -46,6 +57,17 @@ A SQL `FLOAT`sql/`FLOAT(n)`sql is a [**floating-precision** number data type](ht
 A SQL `NUMERIC(precision, scale)`sql is a **fixed-precision** number data type: it stores the number directly as it is and scales the number that is fixed upon initialization. The scale represents the placement of the decimal point. As of SQL, *precision* represents the total number of digits; and *scale* represents the implicit placement of the decimal point to attach.
 
 In summary, both floating-precision and fixed-precision both represents the number it stores in scientfiic notation --as a power of 10. However, a floating-precision number can represent more numbers than the number of bits allocated to significand at the cost of precision beyond said number; while a fixed-precision number is only capable of representing the number of bits it has been allocated at the cost of representing far fewer numbers than that of a floating-precision number.
+
+# Version Notes
+11
+
+10
+- try actually practicing tdd
+- work on part 4 next session
+
+09
+- **02**: need to add .filter method (finished tdd and implementation of helper, `sqlFilterQueryBuilder()` in `helpers/sql`)
+- ****
 
 07
 - notes: when testing: remember to use the `runInBand` flag otherwise transactions overlap and messup, yielding unique key errors, use: `jest --runInBand`sh.

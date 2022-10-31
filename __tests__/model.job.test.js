@@ -61,8 +61,6 @@ describe('create', () => {
 		testJobLazy.equity = String(testJobLazy.equity);
 		testJobLazy["companyHandle"] = 'c1';
 		delete testJobLazy.company_handle;
-
-		console.log(testJobLazy);
 		
 		expect(createResult).toEqual(testJobLazy);
 
@@ -103,7 +101,6 @@ describe('returnAllMatchingModels()', () => {
 		expect(result.length).toEqual(4);
 
 	});
-
 
 	let title = 'front-';
 	test(`w/ filtering: title: ${title}`, async() => {

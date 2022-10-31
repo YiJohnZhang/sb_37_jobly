@@ -4,6 +4,7 @@ const { BadRequestError, NotFoundError } = require("../modules/utilities");
 const { sqlForPartialUpdate, sqlFilterQueryBuilder } = require("../helpers/sql");
 
 const jobJSSQLMapping = {
+	companyHandle: 'company_handle ILIKE',
 	title: 'title ILIKE',
 	minSalary: 'salary >=',
 	hasEquity: 'equity > 0'
