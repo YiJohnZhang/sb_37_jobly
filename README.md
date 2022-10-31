@@ -15,11 +15,15 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |09||2022-10-26|10:57 - 12:49|112|
 |10||2022-10-30|10:48 - 12:10|82|
 |11|**Part 4** TDD|2022-10-30|15:56 - 17:18|82|
-|12|Finished `Jobs` model.|2022-10-30|18:38 - 20:28||
-|13||2022-10-3|: - :||
+|12|Finished `Jobs` model.|2022-10-30|18:38 - 20:28|110|
+|13||2022-10-30|22:11 - :||
+|1||2022-10-3|: - :||
+|1||2022-10-3|: - :||
 ||||**Total Time**| minutes|
 
-10: 679 minutes
+12: 789 minutes
+darn, could have been 274 minutes (4 hours 34 minutes less if I just took the vanilla codebase)
+
 
 11
 
