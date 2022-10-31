@@ -77,9 +77,9 @@ class Company {
 			queryString.name = `%${queryString.name}%`;
 			// vulnerabilites?
 
-		const {parameterizedQuery, queryParameters} = sqlFilterQueryBuilder(queryString, companyJSSQLMapping);
+		const {parameterizedWHERE, queryParameters} = sqlFilterQueryBuilder(queryString, companyJSSQLMapping);
 
-		result = await db.query(`${sqlQueryBeforeWHERE} ${parameterizedQuery} ${sqlQueryAfterWHERE}`, queryParameters);
+		result = await db.query(`${sqlQueryBeforeWHERE} ${parameterizedWHERE} ${sqlQueryAfterWHERE}`, queryParameters);
 
 	}else{
 		result = await db.query(`${sqlQueryBeforeWHERE} ${sqlQueryAfterWHERE}`);

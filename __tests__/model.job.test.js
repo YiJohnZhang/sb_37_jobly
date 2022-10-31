@@ -55,13 +55,22 @@ describe('create', () => {
 	test('works', async() => {
 
 		const createResult = await Job.create(testJob1);
-		expect(createResult).toEqual(testJob1);
+		
+		// create a lazy copy that is the expected JSON response form testJob1
+		let testJobLazy = testJob1;
+		testJobLazy.equity = String(testJobLazy.equity);
+		testJobLazy["companyHandle"] = 'c1';
+		delete testJobLazy.company_handle;
+
+		console.log(testJobLazy);
+		
+		expect(createResult).toEqual(testJobLazy);
 
 		const result = await db.query(`
-			SELECT title, salary, equity, company_handle
+			SELECT title, salary, equity, company_handle AS "companyHandle"
 			FROM jobs
-			WHERE id = 1`);
-		expect(result.rows).toEqual(testJob1);
+			WHERE id = 5`);
+		expect(result.rows[0]).toEqual(testJobLazy);
 
 	});
 
@@ -77,7 +86,6 @@ describe('create', () => {
 		try{
 			const createResult = await Job.create(testJobTest);
 		}catch(error){
-			console.log(error);
 			expect(error instanceof Error).toBeTruthy();
 		}
 
@@ -97,29 +105,24 @@ describe('returnAllMatchingModels()', () => {
 	});
 
 
-	let title = 'front-end';
-	let testQueryString = {
-		title
-	}
+	let title = 'front-';
 	test(`w/ filtering: title: ${title}`, async() => {
 
 		// front-end
-		const result = await Job.returnAllMatchingModels(testQueryString);
+		const result = await Job.returnAllMatchingModels({title});
 		expect(result.length).toEqual(3);
 
 	});
 
-	title = 'engineer';
 	let minSalary = 120000;
-	testQueryString = {
-		title,
-		minSalary
-	}
-	test(`w/ filtering: title: ${title}, minSalary: ${minSalary}`, async() => {
+	test(`w/ filtering: title: \'engineer\', minSalary: ${minSalary}`, async() => {
 
 		// title = engineer
 		// minSalary = 120000
-		const result = await Job.returnAllMatchingModels(testQueryString);
+		const title = 'engineer';
+			// manual override necessary for some reason.
+
+		const result = await Job.returnAllMatchingModels({title, minSalary});
 		expect(result.length).toEqual(3);
 
 	});
@@ -130,23 +133,18 @@ describe('returnAllMatchingModels()', () => {
 		// title = front-end
 		// minSalary = 120000
 		// hasEquity = false
-		const result = await Job.returnAllMatchingModels(testQueryString);
+		const result = await Job.returnAllMatchingModels({title, minSalary});
 		expect(result.length).toEqual(2);
 
 	});
 
 	let hasEquity = true;
-	testQueryString = {
-		title,
-		minSalary,
-		hasEquity
-	}
 	test(`w/ filtering: title: ${title}, minSalary: ${minSalary}, hasEquity: ${hasEquity}`, async() => {
 
 		// title = front-end
 		// minSalary = 120000
 		// hasEquity = true
-		const result = await Job.returnAllMatchingModels(testQueryString);
+		const result = await Job.returnAllMatchingModels({title, minSalary, hasEquity});
 		expect(result.length).toEqual(1);
 
 	});
@@ -164,8 +162,10 @@ describe('update', () => {
 
 		const result = await Job.update(4, updateTestJob4);
 		expect(result).toEqual({
-			company_handle: 'c3',
-			...updateTestJob4
+			companyHandle: 'c3',
+			title: "Back-End Engineer",
+			salary: 135000,
+			equity: "0.003"
 		});
 
 	});
@@ -173,7 +173,7 @@ describe('update', () => {
 	test('404: no such id', async() => {
 
 		try{
-			await Job.update('asdf');
+			await Job.update(16);
 		}catch(error){
 			expect(error instanceof NotFoundError).toBeTruthy();
 		}
@@ -197,16 +197,19 @@ describe('delete', () => {
 	test('works', async() => {
 
 		await Job.remove(4);
-		
-		const result = await Job.returnModelByID(4);
-		expect(result.rows.length).toEqual(0);
+
+		try{
+			await Job.returnModelByID(4);
+		}catch(error){
+			expect(error instanceof NotFoundError).toBeTruthy();
+		}
 
 	});
 
 	test('404: no such id', async() => {
 
 		try{
-			await Job.remove('asdf');
+			await Job.remove(16);
 		}catch(error){
 			expect(error instanceof NotFoundError).toBeTruthy();
 		}

@@ -64,9 +64,9 @@ describe('sqlFilterQueryBuilder', () => {
 		}
 
 
-		const { parameterizedQuery, queryParameters } = sqlFilterQueryBuilder(testCompanySearch, testJSSQLMapping);
+		const { parameterizedWHERE, queryParameters } = sqlFilterQueryBuilder(testCompanySearch, testJSSQLMapping);
 
-		expect(parameterizedQuery).toEqual('WHERE name = $1')
+		expect(parameterizedWHERE).toEqual('WHERE name = $1')
 		expect(queryParameters).toEqual(['test']);
 		
 	});
@@ -80,9 +80,9 @@ describe('sqlFilterQueryBuilder', () => {
 		}
 
 
-		const { parameterizedQuery, queryParameters } = sqlFilterQueryBuilder(testCompanySearch, testJSSQLMapping);
+		const { parameterizedWHERE, queryParameters } = sqlFilterQueryBuilder(testCompanySearch, testJSSQLMapping);
 
-		expect(parameterizedQuery).toEqual('WHERE name = $1 AND num_employees >= $2')
+		expect(parameterizedWHERE).toEqual('WHERE name = $1 AND num_employees >= $2')
 		expect(queryParameters).toEqual(['test', minEmployees]);
 		
 	});

@@ -28,11 +28,11 @@ function sqlFilterQueryBuilder(filterData, jsSQLMapping) {
 
 	if (!keys.length)
 		return;
-		
+
 	const queryArray = keys.map((key, index) => `${jsSQLMapping[key]} $${index+1}`);
 
 	return {
-		parameterizedQuery: `WHERE ${queryArray.join(' AND ')}`,
+		parameterizedWHERE: `WHERE ${queryArray.join(' AND ')}`,
 		queryParameters: Object.values(filterData)
 	};
 
