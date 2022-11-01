@@ -102,7 +102,7 @@ async function commonAfterAll() {
 
 
 const u1Token = createToken({ username: "u1", isAdmin: false });
-const u2Token = createToken({ username: "u2", isAdmin: true });
+const u2Token = createToken({ username: "u2", isAdmin: false });
 const adminUserToken = createToken({ username: "admin", isAdmin: true });
 
 test('dummy test so that \'jest\' isn\'t screaming that \"Your test suite must contain at least one test.\"', () => {

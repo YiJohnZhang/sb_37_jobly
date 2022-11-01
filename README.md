@@ -18,23 +18,12 @@ Jobly. Springboard Cumulative Project, publicy viewable.
 |12|Finished `Jobs` model.|2022-10-30|18:38 - 20:28|110|
 |13||2022-10-30|22:11 - 23:07|56|
 |14||2022-10-31|14:25 - 16:34|129|
-|15||2022-10-31|21:52 - :||
-|15||2022-10-31|: - :||
-||||**Total Time**| minutes|
+|15|finally done|2022-10-31|21:52 - 23:|53|61|
+||||**Total Time**|1035 minutes|
 
 14: 974 minutes
 darn, could have been 274 minutes (4 hours 34 minutes less if I just took the vanilla codebase)
 
-need to complete:
-- `models.jobApplication.test`
-- `router.JobApplication.test`	
-- `router.Jobs.test`
-- `router.Jobs`
-- `models.jobApplication` (handle post only and search by usernmae)
-- `router.JobApplication` (post)
-- modify route outputs
-- authorization refactoring (create a admin+userOrigin middleware and modify tests)
-- estimate: 3 - 5 hours w/ tests
 
 # Specifications:
 - Base Assignment Requirements

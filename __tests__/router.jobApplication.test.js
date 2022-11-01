@@ -3,6 +3,8 @@ const request = require("supertest");
 const db = require('../database/db');
 const app = require("../app");
 
+const { UnauthorizedError } = require('../modules/utilities');
+
 const {
 	commonBeforeAll,
 	commonBeforeEach,
@@ -21,39 +23,30 @@ describe('POST /users/:username/jobs/', () => {
 	// apparently step 5 doesn't say anything about changing the state of the job application, i.e. 
 		// "interested", "applied", "accepted", "rejected"
 	
-	test('works', async() => {
+	test('201: works', async() => {
 
 		let testSchema = {
-			user: 'u1',
-			jobId: 2,
-			applicationState: 'asdfasdf'
+			username: 'u1',
+			jobId: 4,
+			applicationState: 'applied'
 		}
 
-		try{
-
-			const response = await request(app)
+		const response = await request(app)
 			.post('/users/u1/jobs')
 			.send(testSchema)
 			.set("authorization", `Bearer ${u1Token}`);
 
-			expect(response.statusCode).toEqual(201);
-			expect(response.body).toEqual({
-				applied: testSchema.jobId,
-			});
-
-
-		}catch(error){
-
-			console.log(error);
-
-		}
+		expect(response.statusCode).toEqual(201);
+		expect(response.body).toEqual({
+			applied: testSchema.jobId
+		});
 
 	});
 	
 	test('400: malformed schema', async() => {
 
 		let testSchema = {
-			'user': 'abcdefghijklmnpoqrstuvwxyz'
+			username: 'abcdefghijklmnpoqrstuvwxyz'
 		}
 
 		try{
@@ -63,15 +56,45 @@ describe('POST /users/:username/jobs/', () => {
 				.set("authorization", `Bearer ${u1Token}`);
 		}catch(error){
 			expect(error.status).toEqual(400);
-				// consider prototyping MalformedRequestError
+				// consider prototyping MalformedRequestError, 400, from BadRequestError
 		}
 
 	});
 	
-	test('403: unauthorized', async() => {
+	test('201: admin token', async() => {
 
-		// todo
+		let testSchema = {
+			username: 'u1',
+			jobId: 4,
+			applicationState: 'applied'
+		}
 
+		const response = await request(app)
+			.post('/users/u1/jobs')
+			.send(testSchema)
+			.set("authorization", `Bearer ${adminUserToken}`);
+
+		expect(response.statusCode).toEqual(201);
+		expect(response.body).toEqual({
+			applied: testSchema.jobId
+		});
+
+	});
+
+	test('401: unauthorized', async() => {
+
+		let testSchema = {
+			username: 'u1',
+			jobId: 4,
+			applicationState: 'applied'
+		}
+
+		const response = await request(app)
+			.post('/users/u1/jobs')
+			.send(testSchema)
+			.set("authorization", `Bearer ${u2Token}`);
+		
+		expect(response.statusCode).toEqual(401);
 
 	});
 

@@ -35,34 +35,63 @@ function authenticateJWT(req, res, next) {
 	}
 }
 
-/** Middleware to use when they must be logged in.
- *
- * If not, raises Unauthorized.
+/**	ensureLoggedIn(req, res, next) 
+ *	Middleware to use when they must be logged in. If not, raises Unauthorized.
  */
 
 function ensureLoggedIn(req, res, next) {
+
 	try {
+
 		if (!res.locals.user) throw new UnauthorizedError();
 		return next();
-	} catch (err) {
+
+	} catch(err) {
+
 		return next(err);
+
 	}
+
 }
 
-/** Middleware to check wehter or not the user is an admin.
- *
- * If not, raises Unauthorized.
+/**	isAdmin(req, res, nxt)
+ *	Middleware to check wehter or not the user is an admin.
+ *	If not, raises Unauthorized.
  */
 
-function isAdmin(req, res, next) {
+function isAdmin(req, res, nxt) {
+
+	try {
+
+		if (res.locals.user.isAdmin)
+			return nxt();
+			
+		return nxt(new UnauthorizedError());
+
+	} catch(err) {
+
+		return nxt(err);
+
+	}
+
 }
 
-/** Middleware to check whether or not the current user matches a modified user handle.
- *
- * If not, raises Unauthorized.
+/**	isReferenceUser(req, res, nxt)
+ *	Middleware to check whether or not the current user matches a modified user handle.
+ *	If not, raises Unauthorized.
  */
 
-function isReferenceUser(req, res, next) {
+function isReferenceUser(req, res, nxt) {
+
+	// console.log(`${req.params.username}: ${res.locals.user.isAdmin}`)
+	// console.log(`${req.params.username}: ${res.locals.user.username}`)
+
+	if(req.params.username === res.locals.user.username || res.locals.user.isAdmin){
+		return nxt();
+	}
+	
+	return nxt(new UnauthorizedError());
+
 }
 
 module.exports = {

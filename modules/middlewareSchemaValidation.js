@@ -14,15 +14,13 @@ const validateSchemaObject = (selectedSchema) => {
 
 		const schemaValidationResult = jsonschema.validate(req.body, selectedSchema);
 
-		if(!schemaValidationResult.valid){
+		if(schemaValidationResult.valid)
+			return nxt();
 
-			const schemaErrorList = schemaValidationResult.errors.map((error) => error.stack);
-			const schemaError = new ExpressError(400, schemaErrorList);
-			nxt(schemaError);
+		const schemaErrorList = schemaValidationResult.errors.map((error) => error.stack);
+		const schemaError = new ExpressError(400, schemaErrorList);
 
-		}
-
-		nxt();
+		return nxt(schemaError);
 
 	};
 

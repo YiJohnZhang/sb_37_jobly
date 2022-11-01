@@ -15,8 +15,9 @@ class JobApplication {
 	 *	Creates a new record with the expected properties in the method signature, destructured.
 	 *	Returns the record created.
 	 */
-	static async create({username, job_id, application_state}) {
+	static async create({username, jobId:job_id, applicationState:application_state}) {
 
+		
 		const result = await db.query(
 			`INSERT INTO applications
 				(username, job_id, application_state)
@@ -39,7 +40,9 @@ class JobApplication {
 				WHERE username = $1 AND application_state='applied'`,
 				[username]);
 		
-		return result.rows;
+		const returnValue = result.rows.map((element) => element.jobId);
+
+		return returnValue;
 
 	}
 
